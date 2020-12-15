@@ -1,12 +1,8 @@
 
-chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tabs) {
-    var i;
-    var results = document.getElementById('results');
-    var titles = [];
-    for(i = 0; i < tabs.length; i++) {
-        titles.push(tabs[i].title);
-    }
+'use strict';
 
-    results.value = titles.join("\n");
-    results.select();
+document.getElementById('colors').addEventListener('change', function() {
+    chrome.tabs.executeScript({
+        code: 'document.body.style.backgroundColor = "' + this.value + '"'
+    });
 });
